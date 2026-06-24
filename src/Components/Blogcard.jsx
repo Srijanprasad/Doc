@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 const BlogCard = ({ image, title, hashtags, description, date, link }) => {

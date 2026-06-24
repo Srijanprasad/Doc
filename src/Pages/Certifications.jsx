@@ -1,5 +1,5 @@
-import React from "react";
 import { motion as Motion } from "framer-motion";
+import copadoAI from "../assets/copado-ai.jpeg";
 
 const certifications = [
   {
@@ -31,6 +31,15 @@ const certifications = [
       "Foundational understanding of cloud services, Azure architecture, security, compliance, privacy, and pricing. Validates core cloud concepts and Azure service knowledge.",
     tags: ["Azure", "Cloud Computing", "Cloud Fundamentals"],
     link: "https://drive.google.com/file/d/1tkkfo9reR4E2F_CBcb4LyuBoEtv5rpHN/view",
+  },
+  {
+    image: copadoAI,
+    title: "Copado AI",
+    issuer: "Copado",
+    description:
+      "Certified in Copado AI — a DevOps platform for the Salesforce ecosystem. Covers platform fundamentals, AI-powered planning & development, quality & release operations, org intelligence, and prompt engineering for Salesforce lifecycle management.",
+    tags: ["Copado", "DevOps", "Salesforce", "AI"],
+    link: "https://drive.google.com/file/d/1FNFg0XXtHs39_TJq8gnbSx_t1KeoIH7g/view",
   },
 ];
 

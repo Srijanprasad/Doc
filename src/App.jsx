@@ -1,5 +1,6 @@
-import React from "react";
 import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Home from "./Pages/Home";
 import Contacts from "./Pages/Contacts";
@@ -43,7 +44,7 @@ function App() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="w-full md:w-[70%] px-2 overflow-y-hidden overflow-x-hidden"
+            className="w-full md:w-[70%] px-2"
           >
             <div>
               <ScrollToTop />
@@ -60,6 +61,18 @@ function App() {
           </Motion.div>
         </div>
       </div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+        theme="light"
+      />
     </>
   );
 }

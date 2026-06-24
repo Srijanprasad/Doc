@@ -1,4 +1,3 @@
-import React from "react";
 import Email from "../Components/Email";
 import MyApp from "../Components/Myapp";
 import { motion as Motion } from "framer-motion";

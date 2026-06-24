@@ -1,5 +1,5 @@
-import React from "react";
 import { Link } from "react-router-dom";
+import avatar from "../assets/F.jpeg";
 
 function Slider() {
   return (
@@ -9,7 +9,7 @@ function Slider() {
           <div className="pb-5">
             <div className="w-20 h-20 md:w-24 md:h-24 ">
               <img
-                src="/icons/srijan-avatar.png"
+                src={avatar}
                 alt="srijanimage"
                 className="w-full h-full rounded-full object-cover"
               />
