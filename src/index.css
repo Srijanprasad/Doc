@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+body{
+background-color: #131313;
+color: #D4D4D4;
+font-family: 'Inter', sans-serif;
+}
+@layer utilities {
+.animate-marquee {
+animation: marquee linear infinite;
+}
+.animate-marquee.reverse {
+animation-direction: reverse;
+}
+@keyframes marquee {
+from {
+transform: translateX(0%);
+}
+to {
+transform: translateX(-50%);
+}
+}
+}
