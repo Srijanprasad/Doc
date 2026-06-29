@@ -69,6 +69,16 @@ function Contacts() {
               </div>
             </a>
 
+            <a
+              href="https://www.salesforce.com/trailblazer/zz41cbrfucqra9qq3g"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div className="px-5 py-2 min-w-[120px] text-center rounded-xl text-white bg-[#00A1E0] border border-white-1 transform transition duration-300 hover:scale-95 cursor-pointer">
+                Trailhead
+              </div>
+            </a>
+
 
           </div>
 
