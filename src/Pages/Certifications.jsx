@@ -41,6 +41,16 @@ const certifications = [
     tags: ["Copado", "DevOps", "Salesforce", "AI"],
     link: "https://drive.google.com/file/d/1FNFg0XXtHs39_TJq8gnbSx_t1KeoIH7g/view",
   },
+  {
+    image:
+      "https://developer.salesforce.com/resources/developerforce_logo.png",
+    title: "Salesforce Certified Platform Developer I",
+    issuer: "Salesforce",
+    description:
+      "Certified Salesforce Platform Developer I — validates expertise in designing, building, and deploying custom applications on the Salesforce platform using Apex, Lightning Web Components, SOQL, and declarative tools.",
+    tags: ["Salesforce", "Apex", "LWC", "SOQL", "Platform Development"],
+    link: "https://drive.google.com/file/d/1sDQbeCEIPEnRttjN6OI8KH1LVVTXhXja/view",
+  },
 ];
 
 function Certifications() {
