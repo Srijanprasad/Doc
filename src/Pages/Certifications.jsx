@@ -1,7 +1,26 @@
 import { motion as Motion } from "framer-motion";
 import copadoAI from "../assets/copado-ai.jpeg";
+import salesforceBadge from "../assets/2025-04_Badge_SF-Certified_Plat-Dev_High-Res.png";
 
 const certifications = [
+  {
+    image: salesforceBadge,
+    title: "Salesforce Certified Platform Developer I",
+    issuer: "Salesforce",
+    description:
+      "Certified Salesforce Platform Developer I — validates expertise in designing, building, and deploying custom applications on the Salesforce platform using Apex, Lightning Web Components, SOQL, and declarative tools.",
+    tags: ["Salesforce", "Apex", "LWC", "SOQL", "Platform Development"],
+    link: "https://drive.google.com/file/d/1sDQbeCEIPEnRttjN6OI8KH1LVVTXhXja/view",
+  },
+  {
+    image: copadoAI,
+    title: "Copado AI",
+    issuer: "Copado",
+    description:
+      "Certified in Copado AI — a DevOps platform for the Salesforce ecosystem. Covers platform fundamentals, AI-powered planning & development, quality & release operations, org intelligence, and prompt engineering for Salesforce lifecycle management.",
+    tags: ["Copado", "DevOps", "Salesforce", "AI"],
+    link: "https://drive.google.com/file/d/1FNFg0XXtHs39_TJq8gnbSx_t1KeoIH7g/view",
+  },
   {
     image:
       "https://images.credly.com/images/0e284c3f-5164-4b21-8660-0d84737941bc/linkedin_thumb_image.png",
@@ -31,25 +50,6 @@ const certifications = [
       "Foundational understanding of cloud services, Azure architecture, security, compliance, privacy, and pricing. Validates core cloud concepts and Azure service knowledge.",
     tags: ["Azure", "Cloud Computing", "Cloud Fundamentals"],
     link: "https://drive.google.com/file/d/1tkkfo9reR4E2F_CBcb4LyuBoEtv5rpHN/view",
-  },
-  {
-    image: copadoAI,
-    title: "Copado AI",
-    issuer: "Copado",
-    description:
-      "Certified in Copado AI — a DevOps platform for the Salesforce ecosystem. Covers platform fundamentals, AI-powered planning & development, quality & release operations, org intelligence, and prompt engineering for Salesforce lifecycle management.",
-    tags: ["Copado", "DevOps", "Salesforce", "AI"],
-    link: "https://drive.google.com/file/d/1FNFg0XXtHs39_TJq8gnbSx_t1KeoIH7g/view",
-  },
-  {
-    image:
-      "https://developer.salesforce.com/resources/developerforce_logo.png",
-    title: "Salesforce Certified Platform Developer I",
-    issuer: "Salesforce",
-    description:
-      "Certified Salesforce Platform Developer I — validates expertise in designing, building, and deploying custom applications on the Salesforce platform using Apex, Lightning Web Components, SOQL, and declarative tools.",
-    tags: ["Salesforce", "Apex", "LWC", "SOQL", "Platform Development"],
-    link: "https://drive.google.com/file/d/1sDQbeCEIPEnRttjN6OI8KH1LVVTXhXja/view",
   },
 ];
 
