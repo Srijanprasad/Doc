@@ -1,6 +1,7 @@
 import { motion as Motion } from "framer-motion";
-import copadoAI from "../assets/copado-ai.jpeg";
+import copadoBadge from "../assets/Copoado AI.avif";
 import salesforceBadge from "../assets/2025-04_Badge_SF-Certified_Plat-Dev_High-Res.png";
+import azureLogo from "../assets/Microsoft_Azure.svg.webp";
 
 const certifications = [
   {
@@ -13,7 +14,7 @@ const certifications = [
     link: "https://drive.google.com/file/d/1sDQbeCEIPEnRttjN6OI8KH1LVVTXhXja/view",
   },
   {
-    image: copadoAI,
+    image: copadoBadge,
     title: "Copado AI",
     issuer: "Copado",
     description:
@@ -42,8 +43,7 @@ const certifications = [
     link: "https://www.datacamp.com/completed/statement-of-accomplishment/track/3b24e96f91727dba3a291bb20dd1b2060f20aae0",
   },
   {
-    image:
-      "https://learn.microsoft.com/en-us/training/achievements/azure-fundamentals.svg",
+    image: azureLogo,
     title: "Microsoft Azure Fundamentals (AZ-900)",
     issuer: "Microsoft",
     description:
