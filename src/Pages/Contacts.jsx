@@ -29,6 +29,33 @@ function Contacts() {
 
           <div className="flex flex-wrap justify-center gap-3 py-4">
             <a
+              href="https://www.salesforce.com/trailblazer/srijanprasad07"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div className="px-5 py-2 min-w-[120px] text-center rounded-xl text-white bg-[#00A1E0] border border-white-1 transform transition duration-300 hover:scale-95 cursor-pointer">
+                Trailhead
+              </div>
+            </a>
+            <a
+              href="https://medium.com/@srijanprasad2006"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div className="px-5 py-2 min-w-[120px] text-center rounded-xl text-white bg-[#FF6B35] border border-white-1 transform transition duration-300 hover:scale-95 cursor-pointer">
+                Blogs
+              </div>
+            </a>
+            <a
+              href="https://medium.com/@srijanprasad2006"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div className="px-5 py-2 min-w-[120px] text-center rounded-xl text-white bg-[#12100E] border border-white-1 transform transition duration-300 hover:scale-95 cursor-pointer">
+                Medium
+              </div>
+            </a>
+            <a
               href="https://www.linkedin.com/in/srijan-prasad-/"
               target="_blank"
             >
@@ -60,6 +87,16 @@ function Contacts() {
           
 
             <a
+              href="https://www.codechef.com/users/ushannn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div className="px-5 py-2 min-w-[120px] text-center rounded-xl text-white bg-[#8B4513] border border-white-1 transform transition duration-300 hover:scale-95 cursor-pointer">
+                CodeChef
+              </div>
+            </a>
+
+            <a
               href="mailto:srijanprasad2006@gmail.com"
               target="_blank"
               rel="noopener noreferrer"
@@ -68,17 +105,6 @@ function Contacts() {
                 Email
               </div>
             </a>
-
-            <a
-              href="https://www.salesforce.com/trailblazer/srijanprasad07"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div className="px-5 py-2 min-w-[120px] text-center rounded-xl text-white bg-[#00A1E0] border border-white-1 transform transition duration-300 hover:scale-95 cursor-pointer">
-                Trailhead
-              </div>
-            </a>
-
 
           </div>
 
