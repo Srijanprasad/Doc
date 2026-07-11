@@ -29,7 +29,7 @@ function Contacts() {
 
           <div className="flex flex-wrap justify-center gap-3 py-4">
             <a
-              href="https://www.salesforce.com/trailblazer/srijanprasad07"
+              href="https://www.salesforce.com/trailblazer/ushanprasad"
               target="_blank"
               rel="noopener noreferrer"
             >
