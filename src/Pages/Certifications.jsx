@@ -34,6 +34,16 @@ const certifications = [
   },
   {
     image:
+      "https://images.credly.com/images/1f77d707-1538-46fd-92e0-c49649da87dc/linkedin_thumb_blob",
+    title: "SAP Certified - SAP Generative AI Developer",
+    issuer: "SAP",
+    description:
+      "This certification verifies that you understand SAP's Business AI capabilities and have the skills to extend SAP BTP applications, while leveraging leading Large Language Models(LLMs), using SAP AI Core/SAP AI Launchpad and SAP's generative AI hub.",
+    tags: ["SAP", "Generative AI", "BTP", "LLM", "AI Core"],
+    link: "https://www.credly.com/badges/4f7d7398-6dc0-43b9-a3c8-5fe4219a5aa8/public_url",
+  },
+  {
+    image:
       "https://images.credly.com/images/00634f82-b07f-4bbd-a6bb-53de397fc3a6/linkedin_thumb_image.png",
     title: "AWS Cloud Practitioner (CLF-C02)",
     issuer: "Amazon Web Services Training and Certification",
