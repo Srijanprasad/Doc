@@ -88,6 +88,16 @@ function Contacts() {
           
 
             <a
+              href="https://www.credly.com/users/srijan-prasad./badges/credly"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div className="px-5 py-2 min-w-[120px] text-center rounded-xl text-white bg-[#FF6C0E] border border-white-1 transform transition duration-300 hover:scale-95 cursor-pointer">
+                Credly
+              </div>
+            </a>
+
+            <a
               href="https://www.codechef.com/users/ushannn"
               target="_blank"
               rel="noopener noreferrer"
