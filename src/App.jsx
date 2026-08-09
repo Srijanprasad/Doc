@@ -8,6 +8,7 @@ import Certifications from "./Pages/Certifications";
 import Experience from "./Pages/Experience";
 import Projects from "./Pages/Projects";
 import About from "./Pages/About";
+import Blog from "./Pages/Blog";
 import { motion as Motion } from "framer-motion";
 import Slider from "./Components/Slider";
 import Headerslider from "./Components/Headerslider";
@@ -55,6 +56,7 @@ function App() {
                 <Route path="/experience" element={<Experience />} />
                 <Route path="/projects" element={<Projects />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/blog" element={<Blog />} />
                 <Route path="/contacts" element={<Contacts />} />
               </Routes>
             </div>

@@ -36,6 +36,12 @@ function Headerslider() {
           </div>
         </Link>
 
+        <Link to="/blog">
+          <div className="flex items-center bg-[#1E1E1E] p-3 rounded-xl hover:bg-[#525252] transition duration-300">
+            <img src="/icons/blog.svg" alt="blog" className="h-6 w-6" />
+          </div>
+        </Link>
+
         <Link to="/about">
           <div className="flex items-center bg-[#1E1E1E] p-3 rounded-xl hover:bg-[#525252] transition duration-300">
             <img src="/icons/newabout.svg" alt="about" className="h-6 w-6" />

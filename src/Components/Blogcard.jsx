@@ -1,46 +1,51 @@
-import { Link } from "react-router-dom";
-
-const BlogCard = ({ image, title, hashtags, description, date, link }) => {
+const BlogCard = ({ image, title, date, excerpt, link }) => {
   return (
-    <div
-      className={`relative rounded-2xl shadow-md w-full sm:w-80 md:w-80 h-110  overflow-hidden group cursor-pointer`}
-      style={{
-        backgroundImage: `url(${image})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
+    <a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`Read ${title} on Medium`}
+      className="group flex flex-col bg-[#111] border border-gray-800 rounded-2xl overflow-hidden transition-all duration-300 hover:border-gray-600 hover:shadow-xl hover:shadow-black/50 hover:-translate-y-1.5"
     >
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
-
-      <div className="absolute top-0 left-0 p-2 sm:p-4 flex gap-1 sm:gap-2 flex-wrap">
-        {hashtags.map((tag, i) => (
-          <span
-            key={i}
-            className="bg-black/50 backdrop-blur-sm text-gray-200 text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full"
-          >
-            #{tag}
-          </span>
-        ))}
+      <div className="relative aspect-[16/9] shrink-0 overflow-hidden bg-gray-800">
+        <img
+          src={image}
+          alt={title}
+          loading="lazy"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          onError={(e) => {
+            e.currentTarget.src = "/icons/blog-fallback.svg";
+          }}
+        />
       </div>
 
-      <div className="absolute bottom-0 p-2 sm:p-4 text-white w-full">
-        <h2 className="text-base sm:text-lg font-semibold">{title}</h2>
-        <p className="text-gray-300 text-[10px] sm:text-xs">{date}</p>
-        <p className="text-gray-200 text-xs sm:text-sm mt-1 line-clamp-2 sm:line-clamp-3">
-          {description}
+      <div className="flex flex-col flex-1 p-5">
+        <p className="text-xs text-gray-500 font-medium">{date}</p>
+        <h3 className="mt-1.5 text-base font-semibold text-white leading-snug line-clamp-2 transition-colors duration-300 group-hover:text-gray-300">
+          {title}
+        </h3>
+        <p className="mt-2 text-sm text-gray-500 leading-relaxed line-clamp-3">
+          {excerpt}
         </p>
-      </div>
 
-      <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-        <Link
-          to={link}
-          target="_blank"
-          className="text-sm sm:text-lg font-semibold hover:underline"
-        >
-          READ MORE →
-        </Link>
+        <span className="mt-auto inline-flex items-center gap-1.5 pt-4 text-sm font-medium text-gray-400 transition-colors duration-300 group-hover:text-white">
+          Read on Medium
+          <svg
+            className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={1.5}
+              d="M14 4h6m0 0v6m0-6L10 14"
+            />
+          </svg>
+        </span>
       </div>
-    </div>
+    </a>
   );
 };
 
