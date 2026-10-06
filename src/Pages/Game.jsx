@@ -22,6 +22,10 @@ function Game() {
           Play my Pac-Man arcade game right here. Click inside the game to get
           started.
         </p>
+        <p className="mt-2 text-sm leading-relaxed text-cyan-100/80 md:hidden">
+          On your phone, tap Start Mission, then use the arrow pad below the
+          maze to steer.
+        </p>
       </section>
 
       <div className="overflow-hidden rounded-2xl border border-cyan-400/30 bg-[#080a18] shadow-[0_0_30px_rgba(34,211,238,0.08)]">
@@ -30,7 +34,8 @@ function Game() {
           title="Play Srijan's Pac-Man arcade game"
           allow="gamepad"
           allowFullScreen
-          className="h-[720px] w-full border-0 bg-[#080a18] md:h-[900px]"
+          scrolling="no"
+          className="h-[1066px] w-full border-0 bg-[#080a18] min-[431px]:h-[1220px] min-[801px]:h-[900px]"
         />
       </div>
     </Motion.div>
