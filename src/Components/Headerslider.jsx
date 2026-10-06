@@ -16,6 +16,14 @@ function Headerslider() {
           </div>
         </Link>
 
+        <Link to="/play" aria-label="Play game" title="Play">
+          <div className="flex items-center justify-center bg-[#1E1E1E] p-3 rounded-xl hover:bg-[#525252] transition duration-300">
+            <span aria-hidden="true" className="text-lg leading-6">
+              🎮
+            </span>
+          </div>
+        </Link>
+
         <Link to="/certifications">
           <div className="flex items-center bg-[#1E1E1E] p-3 rounded-xl hover:bg-[#525252] transition duration-300">
             <img

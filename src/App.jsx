@@ -9,6 +9,7 @@ import Experience from "./Pages/Experience";
 import Projects from "./Pages/Projects";
 import About from "./Pages/About";
 import Blog from "./Pages/Blog";
+import Game from "./Pages/Game";
 import { motion as Motion } from "framer-motion";
 import Slider from "./Components/Slider";
 import Headerslider from "./Components/Headerslider";
@@ -55,6 +56,7 @@ function App() {
                 <Route path="/certifications" element={<Certifications />} />
                 <Route path="/experience" element={<Experience />} />
                 <Route path="/projects" element={<Projects />} />
+                <Route path="/play" element={<Game />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/contacts" element={<Contacts />} />

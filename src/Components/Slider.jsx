@@ -54,6 +54,17 @@ function Slider() {
           </div>
 
           <div className="py-2">
+            <Link to="/play">
+              <div className="flex bg-[#1E1E1E] px-5 py-4 rounded-2xl hover:bg-[#525252] transition duration-300">
+                <span aria-hidden="true" className="h-5.5 w-5 text-lg leading-5">
+                  🎮
+                </span>
+                <div className="px-2">Play</div>
+              </div>
+            </Link>
+          </div>
+
+          <div className="py-2">
             <Link to="/certifications">
               <div className="flex bg-[#1E1E1E] px-5 py-4 rounded-2xl hover:bg-[#525252] transition duration-300">
                 <img
