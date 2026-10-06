@@ -1,16 +1,108 @@
-import { useCallback, useEffect, useState } from "react";
 import { motion as Motion } from "framer-motion";
 import BlogCard from "../Components/Blogcard";
 
-const MEDIUM_USERNAME = "srijanprasad2006";
-const RSS_FEED = `https://medium.com/feed/@${MEDIUM_USERNAME}`;
-const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_FEED)}`;
-const MAX_POSTS = 6;
-const FALLBACK_IMAGE = "/icons/blog-fallback.svg";
+const BLOG_URL = "https://blog-alpha-pied-12.vercel.app";
+
+const posts = [
+  {
+    title:
+      "The Asymmetry of Model Distillation: Why OpenAI Banned PewDiePie for Training a Local AI",
+    category: "Artificial Intelligence",
+    date: "Oct 4, 2026",
+    excerpt:
+      "OpenAI trained on the open web, but banned PewDiePie twice for training on model outputs. An editorial investigation into the legal, ethical, and architectural tensions of synthetic distillation and local AI sovereignty.",
+    image: `${BLOG_URL}/pewdiepie-openai-distillation-local-ai.jpg`,
+    link: `${BLOG_URL}/blog/the-asymmetry-of-model-distillation-why-openai-banned-pewdiepie`,
+  },
+  {
+    title:
+      "The Anatomy of High-Signal Publishing: Editorial Standards in the Era of Synthetic Content",
+    category: "Content Strategy",
+    date: "Dec 8, 2025",
+    excerpt:
+      "Why information gain, rigorous provenance, and deep structural clarity are the only enduring moats for digital writers.",
+    image:
+      "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=1400&q=80",
+    link: `${BLOG_URL}/blog/anatomy-of-high-signal-publishing-editorial-standards-ai-era`,
+  },
+  {
+    title:
+      "Mastering Core Web Vitals: Eliminating Layout Shifts and Interaction Latency (INP)",
+    category: "Systems Engineering",
+    date: "Nov 12, 2025",
+    excerpt:
+      "A hands-on engineering guide to mastering Interaction to Next Paint (INP), Largest Contentful Paint (LCP), and Cumulative Layout Shift (CLS).",
+    image:
+      "https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=1400&q=80",
+    link: `${BLOG_URL}/blog/modern-web-performance-core-web-vitals-inp-lcp`,
+  },
+  {
+    title:
+      "Building Resilient Second Brains: Information Architecture for Personal Knowledge",
+    category: "Knowledge Management",
+    date: "Oct 5, 2025",
+    excerpt:
+      "How to design an enduring personal knowledge graph using atomic notes, bidirectional linking, and digital gardening principles.",
+    image:
+      "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1400&q=80",
+    link: `${BLOG_URL}/blog/building-resilient-second-brains-personal-knowledge-architecture`,
+  },
+  {
+    title:
+      "The Engineering of Semantic Search: From Vector Embeddings to Hybrid BM25 Retrieval",
+    category: "Systems Engineering",
+    date: "Sep 22, 2025",
+    excerpt:
+      "How modern knowledge platforms blend dense vector embeddings with sparse lexical indexing to build fast, accurate personal search engines.",
+    image:
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1400&q=80",
+    link: `${BLOG_URL}/blog/engineering-semantic-search-vector-embeddings-hybrid-retrieval`,
+  },
+  {
+    title:
+      "Lessons Beyond the Classroom: Deconstructing the KYC and SMART Frameworks with Gaurav Ghelani",
+    category: "Systems Engineering",
+    date: "Sep 20, 2025",
+    excerpt:
+      "Connecting academic computer science with enterprise reality: how the KYC (Knowledge, Your Skills, Communication) and SMART frameworks reshape professional mindset, relationships, and accountability.",
+    image: `${BLOG_URL}/gaurav-ghelani-tit-session.png`,
+    link: `${BLOG_URL}/blog/lessons-beyond-the-classroom-kyc-smart-frameworks-gaurav-ghelani-tit`,
+  },
+  {
+    title:
+      "An Interaction That Gave Me a Better Perspective on the Industry: Capgemini × TIT Group of Institutions",
+    category: "Systems Engineering",
+    date: "Sep 12, 2025",
+    excerpt:
+      "Reflections from a final-year CSE student on bridging the gap between academic computer science and enterprise expectations: communication, adaptability, problem-solving, and continuous learning from Capgemini leadership at TIT Group of Institutions.",
+    image: `${BLOG_URL}/capgemini-tit-industry-interaction.jpg`,
+    link: `${BLOG_URL}/blog/an-interaction-that-gave-me-a-better-perspective-on-the-industry-capgemini-tit`,
+  },
+  {
+    title:
+      "Architecting Generative Engine Optimization: How AI Search Changes Content Discovery",
+    category: "Artificial Intelligence",
+    date: "Aug 15, 2025",
+    excerpt:
+      "A deep technical blueprint on structuring web content for Perplexity, SearchGPT, Gemini, and modern LLM answer synthesis engines.",
+    image:
+      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1400&q=80",
+    link: `${BLOG_URL}/blog/architecting-generative-engine-optimization-geo`,
+  },
+  {
+    title: "My First Experience as a Volunteer at WordCamp Bhopal 2025",
+    category: "Systems Engineering",
+    date: "Feb 28, 2025",
+    excerpt:
+      "Some experiences stay with you because of what you do. Others stay with you because of the people you meet along the way. Reflections on seeing WordCamp from the other side as a volunteer and contributor.",
+    image: `${BLOG_URL}/wordcamp-bhopal-2025-group-photo.jpg`,
+    link: `${BLOG_URL}/blog/my-first-experience-as-a-volunteer-at-wordcamp-bhopal-2025`,
+  },
+];
 
 const container = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.12 } },
+  show: { transition: { staggerChildren: 0.08 } },
 };
 
 const item = {
@@ -18,123 +110,7 @@ const item = {
   show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
 };
 
-function stripHtmlAndTruncate(html, max = 120) {
-  const text = html
-    .replace(/<[^>]*>/g, " ")
-    .replace(/&nbsp;/g, " ")
-    .replace(/&amp;/g, "&")
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'")
-    .replace(/&#\d+;/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-  return text.length > max ? `${text.slice(0, max).trim()}...` : text;
-}
-
-function extractFirstImage(content) {
-  const imgTags = content.match(/<img[^>]+>/gi) || [];
-  const srcPattern = /src=["']([^"']+)["']/i;
-  for (const tag of imgTags) {
-    if (/medium\.com\/_\/stat|width=["']?1["']?\s+height=["']?1["']?/i.test(tag)) {
-      continue;
-    }
-    const match = tag.match(srcPattern);
-    if (match) return match[1];
-  }
-  return null;
-}
-
-function formatDate(pubDate) {
-  const date = new Date(pubDate);
-  if (Number.isNaN(date.getTime())) return "Recent";
-  return date.toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
-}
-
-function LoadingState() {
-  return (
-    <div className="flex flex-col items-center justify-center py-24 gap-4">
-      <div className="w-10 h-10 border-4 border-gray-700 border-t-white rounded-full animate-spin" />
-      <p className="text-gray-500 text-sm">Fetching latest articles from Medium...</p>
-    </div>
-  );
-}
-
-function ErrorState({ onRetry }) {
-  return (
-    <div className="flex flex-col items-center justify-center py-24 gap-4 text-center px-4">
-      <svg
-        className="w-12 h-12 text-gray-600"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={1.5}
-          d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"
-        />
-      </svg>
-      <div>
-        <h3 className="text-white font-semibold">Couldn't load articles</h3>
-        <p className="text-gray-500 text-sm mt-1 max-w-sm">
-          Something went wrong while fetching my latest Medium posts. Please try
-          again in a moment.
-        </p>
-      </div>
-      <button
-        type="button"
-        onClick={onRetry}
-        className="mt-1 px-5 py-2.5 text-sm font-medium text-white bg-[#1E1E1E] border border-gray-700 rounded-xl hover:bg-[#525252] hover:border-gray-600 transition duration-300"
-      >
-        Try Again
-      </button>
-    </div>
-  );
-}
-
 function Blog() {
-  const [posts, setPosts] = useState([]);
-  const [status, setStatus] = useState("loading");
-  const [reloadKey, setReloadKey] = useState(0);
-
-  useEffect(() => {
-    const controller = new AbortController();
-
-    fetch(API_URL, { signal: controller.signal })
-      .then((res) => {
-        if (!res.ok) throw new Error(`Request failed with status ${res.status}`);
-        return res.json();
-      })
-      .then((data) => {
-        if (
-          data.status !== "ok" ||
-          !Array.isArray(data.items) ||
-          data.items.length === 0
-        ) {
-          throw new Error("No posts returned from the feed");
-        }
-        setPosts(data.items.slice(0, MAX_POSTS));
-        setStatus("ready");
-      })
-      .catch((err) => {
-        if (err.name !== "AbortError") setStatus("error");
-      });
-
-    return () => controller.abort();
-  }, [reloadKey]);
-
-  const handleRetry = useCallback(() => {
-    setStatus("loading");
-    setReloadKey((k) => k + 1);
-  }, []);
-
   return (
     <Motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -144,47 +120,31 @@ function Blog() {
     >
       <div className="px-4 md:py-10">
         <section className="py-4">
-          <h2 className="text-3xl font-bold text-white">Blog</h2>
-          <p className="text-gray-500 text-sm mt-1.5 max-w-xl">
-            My latest articles on software development, tech, and everything I
-            am learning.
+          <h1 className="text-3xl font-bold text-white">Blog</h1>
+          <p className="text-gray-400 text-sm mt-1.5 max-w-xl">
+            My articles on software development, AI, systems, and what I am
+            learning.
+          </p>
+          <p className="mt-2 text-xs text-gray-500">
+            Articles open in a new tab, so your portfolio stays open.
           </p>
         </section>
 
         <div className="w-full border-t border-gray-800"></div>
 
-        <section className="pt-8">
-          {status === "loading" && <LoadingState />}
-
-          {status === "error" && <ErrorState onRetry={handleRetry} />}
-
-          {status === "ready" && (
-            <Motion.div
-              variants={container}
-              initial="hidden"
-              animate="show"
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
-            >
-              {posts.map((post) => {
-                const image =
-                  post.thumbnail ||
-                  extractFirstImage(post.content || "") ||
-                  FALLBACK_IMAGE;
-
-                return (
-                  <Motion.div key={post.guid || post.link} variants={item}>
-                    <BlogCard
-                      image={image}
-                      title={post.title || "Untitled"}
-                      date={formatDate(post.pubDate)}
-                      excerpt={stripHtmlAndTruncate(post.content || "")}
-                      link={post.link}
-                    />
-                  </Motion.div>
-                );
-              })}
-            </Motion.div>
-          )}
+        <section className="pt-8" aria-label="All blog articles">
+          <Motion.div
+            variants={container}
+            initial="hidden"
+            animate="show"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+          >
+            {posts.map((post) => (
+              <Motion.div key={post.link} variants={item}>
+                <BlogCard {...post} />
+              </Motion.div>
+            ))}
+          </Motion.div>
         </section>
       </div>
 

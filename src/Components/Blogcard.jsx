@@ -1,10 +1,10 @@
-const BlogCard = ({ image, title, date, excerpt, link }) => {
+const BlogCard = ({ image, title, date, excerpt, link, category }) => {
   return (
     <a
       href={link}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label={`Read ${title} on Medium`}
+      aria-label={`Read ${title}`}
       className="group flex flex-col bg-[#111] border border-gray-800 rounded-2xl overflow-hidden transition-all duration-300 hover:border-gray-600 hover:shadow-xl hover:shadow-black/50 hover:-translate-y-1.5"
     >
       <div className="relative aspect-[16/9] shrink-0 overflow-hidden bg-gray-800">
@@ -21,6 +21,11 @@ const BlogCard = ({ image, title, date, excerpt, link }) => {
 
       <div className="flex flex-col flex-1 p-5">
         <p className="text-xs text-gray-500 font-medium">{date}</p>
+        {category && (
+          <p className="mt-2 text-[11px] font-semibold uppercase tracking-wide text-cyan-300">
+            {category}
+          </p>
+        )}
         <h3 className="mt-1.5 text-base font-semibold text-white leading-snug line-clamp-2 transition-colors duration-300 group-hover:text-gray-300">
           {title}
         </h3>
@@ -29,7 +34,7 @@ const BlogCard = ({ image, title, date, excerpt, link }) => {
         </p>
 
         <span className="mt-auto inline-flex items-center gap-1.5 pt-4 text-sm font-medium text-gray-400 transition-colors duration-300 group-hover:text-white">
-          Read on Medium
+          Read article
           <svg
             className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
             fill="none"
