@@ -1,10 +1,24 @@
 import TechCarousel from "../Components/Techcarousel";
 import { Link } from "react-router-dom";
 import { motion as Motion } from "framer-motion";
+import SEO from "../Components/SEO";
 
 function Home() {
   return (
     <>
+      <SEO
+        title="Software Developer Portfolio"
+        description="Srijan Prasad builds scalable software, cloud-native solutions, AI applications, and Salesforce technologies."
+        keywords={["Srijan Prasad", "software developer", "React", "cloud", "AI"]}
+        canonicalPath="/"
+        image={`${import.meta.env.VITE_SITE_URL || window.location.origin}/icons/srijan-avatar.png`}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "Srijan Prasad",
+          url: import.meta.env.VITE_SITE_URL || window.location.origin,
+        }}
+      />
       <Motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
