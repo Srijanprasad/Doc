@@ -1,70 +1,61 @@
-import { Link } from "react-router-dom";
+import {
+  Award,
+  BookOpen,
+  BriefcaseBusiness,
+  Code2,
+  Gamepad2,
+  House,
+  Mail,
+  UserRound,
+} from "lucide-react";
+import { NavLink } from "react-router-dom";
+
+const navigation = [
+  { label: "Home", to: "/", icon: <House size={15} strokeWidth={1.8} />, end: true },
+  { label: "Work", to: "/projects", icon: <Code2 size={15} strokeWidth={1.8} /> },
+  { label: "Experience", to: "/experience", icon: <BriefcaseBusiness size={15} strokeWidth={1.8} /> },
+  { label: "Awards", to: "/certifications", icon: <Award size={15} strokeWidth={1.8} /> },
+  { label: "Writing", to: "/blog", icon: <BookOpen size={15} strokeWidth={1.8} /> },
+  { label: "About", to: "/about", icon: <UserRound size={15} strokeWidth={1.8} /> },
+  { label: "Play", to: "/play", icon: <Gamepad2 size={15} strokeWidth={1.8} /> },
+  { label: "Contact", to: "/contacts", icon: <Mail size={15} strokeWidth={1.8} /> },
+];
 
 function Headerslider() {
   return (
-    <header className="w-full p-1 shadow-md">
-      <nav className="flex justify-between items-center space-x-4">
-        <Link to="/">
-          <div className="flex items-center bg-[#1E1E1E] p-3 rounded-xl hover:bg-[#525252] transition duration-300">
-            <img src="/icons/latesthome.svg" alt="home" className="h-6 w-6" />
-          </div>
-        </Link>
-
-        <Link to="/projects">
-          <div className="flex items-center bg-[#1E1E1E] p-3 rounded-xl hover:bg-[#525252] transition duration-300">
-            <img src="/icons/newcart.svg" alt="projects" className="h-6 w-6" />
-          </div>
-        </Link>
-
-        <Link to="/play" aria-label="Play game" title="Play">
-          <div className="flex items-center justify-center bg-[#1E1E1E] p-3 rounded-xl hover:bg-[#525252] transition duration-300">
-            <span aria-hidden="true" className="text-lg leading-6">
-              🎮
-            </span>
-          </div>
-        </Link>
-
-        <Link to="/certifications">
-          <div className="flex items-center bg-[#1E1E1E] p-3 rounded-xl hover:bg-[#525252] transition duration-300">
-            <img
-              src="/icons/newblog.svg"
-              alt="certifications"
-              className="h-6 w-6"
-            />
-          </div>
-        </Link>
-
-        <Link to="/experience">
-          <div className="flex items-center bg-[#1E1E1E] p-3 rounded-xl hover:bg-[#525252] transition duration-300">
-            <img
-              src="/icons/newdash.svg"
-              alt="experience"
-              className="h-6 w-6"
-            />
-          </div>
-        </Link>
-
-        <Link to="/blog">
-          <div className="flex items-center bg-[#1E1E1E] p-3 rounded-xl hover:bg-[#525252] transition duration-300">
-            <img src="/icons/blog.svg" alt="blog" className="h-6 w-6" />
-          </div>
-        </Link>
-
-        <Link to="/about">
-          <div className="flex items-center bg-[#1E1E1E] p-3 rounded-xl hover:bg-[#525252] transition duration-300">
-            <img src="/icons/newabout.svg" alt="about" className="h-6 w-6" />
-          </div>
-        </Link>
-
-        <Link to="/contacts">
-          <div className="flex items-center bg-[#1E1E1E] p-3 rounded-xl hover:bg-[#525252] transition duration-300">
-            <img
-              src="/icons/newcontacts.svg"
-              alt="contacts"
-              className="h-6 w-6"
-            />
-          </div>
-        </Link>
+    <header className="border-b border-white/10 pb-3 pt-5">
+      <div className="mb-4 flex items-center gap-3">
+        <img
+          src="/srijan-prasad-photo.jpg"
+          alt=""
+          className="h-10 w-10 rounded-xl object-cover object-top"
+        />
+        <div>
+          <p className="text-sm font-semibold text-white">Srijan Prasad</p>
+          <p className="text-xs text-slate-400">Software Developer</p>
+        </div>
+      </div>
+      <nav
+        aria-label="Main navigation"
+        className="-mx-1 flex gap-1 overflow-x-auto px-1 pb-1"
+      >
+        {navigation.map(({ label, to, icon, end }) => (
+          <NavLink
+            key={to}
+            to={to}
+            end={end}
+            className={({ isActive }) =>
+              `flex shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-xs transition-colors ${
+                isActive
+                  ? "bg-white/[0.1] text-white"
+                  : "text-slate-400 hover:bg-white/[0.05] hover:text-white"
+              }`
+            }
+          >
+            {icon}
+            {label}
+          </NavLink>
+        ))}
       </nav>
     </header>
   );

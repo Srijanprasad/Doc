@@ -1,5 +1,3 @@
-const BLOG_URL = "https://blog-alpha-pied-12.vercel.app";
-
 export const fallbackPosts = [
   {
     title:
@@ -9,9 +7,8 @@ export const fallbackPosts = [
     published_at: "2026-10-04T00:00:00Z",
     excerpt:
       "OpenAI trained on the open web, but banned PewDiePie twice for training on model outputs. An editorial investigation into the legal, ethical, and architectural tensions of synthetic distillation and local AI sovereignty.",
-    image: `${BLOG_URL}/pewdiepie-openai-distillation-local-ai.jpg`,
+    image: "/icons/blog-fallback.svg",
     slug: "the-asymmetry-of-model-distillation-why-openai-banned-pewdiepie",
-    externalUrl: `${BLOG_URL}/blog/the-asymmetry-of-model-distillation-why-openai-banned-pewdiepie`,
   },
   {
     title:
@@ -24,7 +21,6 @@ export const fallbackPosts = [
     image:
       "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=1400&q=80",
     slug: "anatomy-of-high-signal-publishing-editorial-standards-ai-era",
-    externalUrl: `${BLOG_URL}/blog/anatomy-of-high-signal-publishing-editorial-standards-ai-era`,
   },
   {
     title:
@@ -37,7 +33,6 @@ export const fallbackPosts = [
     image:
       "https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=1400&q=80",
     slug: "modern-web-performance-core-web-vitals-inp-lcp",
-    externalUrl: `${BLOG_URL}/blog/modern-web-performance-core-web-vitals-inp-lcp`,
   },
   {
     title:
@@ -50,7 +45,6 @@ export const fallbackPosts = [
     image:
       "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1400&q=80",
     slug: "building-resilient-second-brains-personal-knowledge-architecture",
-    externalUrl: `${BLOG_URL}/blog/building-resilient-second-brains-personal-knowledge-architecture`,
   },
   {
     title:
@@ -63,7 +57,6 @@ export const fallbackPosts = [
     image:
       "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1400&q=80",
     slug: "engineering-semantic-search-vector-embeddings-hybrid-retrieval",
-    externalUrl: `${BLOG_URL}/blog/engineering-semantic-search-vector-embeddings-hybrid-retrieval`,
   },
   {
     title:
@@ -73,9 +66,8 @@ export const fallbackPosts = [
     published_at: "2025-09-20T00:00:00Z",
     excerpt:
       "Connecting academic computer science with enterprise reality: how the KYC (Knowledge, Your Skills, Communication) and SMART frameworks reshape professional mindset, relationships, and accountability.",
-    image: `${BLOG_URL}/gaurav-ghelani-tit-session.png`,
+    image: "/icons/blog-fallback.svg",
     slug: "lessons-beyond-the-classroom-kyc-smart-frameworks-gaurav-ghelani-tit",
-    externalUrl: `${BLOG_URL}/blog/lessons-beyond-the-classroom-kyc-smart-frameworks-gaurav-ghelani-tit`,
   },
   {
     title:
@@ -85,9 +77,8 @@ export const fallbackPosts = [
     published_at: "2025-09-12T00:00:00Z",
     excerpt:
       "Reflections from a final-year CSE student on bridging the gap between academic computer science and enterprise expectations: communication, adaptability, problem-solving, and continuous learning from Capgemini leadership at TIT Group of Institutions.",
-    image: `${BLOG_URL}/capgemini-tit-industry-interaction.jpg`,
+    image: "/icons/blog-fallback.svg",
     slug: "an-interaction-that-gave-me-a-better-perspective-on-the-industry-capgemini-tit",
-    externalUrl: `${BLOG_URL}/blog/an-interaction-that-gave-me-a-better-perspective-on-the-industry-capgemini-tit`,
   },
   {
     title:
@@ -100,7 +91,6 @@ export const fallbackPosts = [
     image:
       "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1400&q=80",
     slug: "architecting-generative-engine-optimization-geo",
-    externalUrl: `${BLOG_URL}/blog/architecting-generative-engine-optimization-geo`,
   },
   {
     title: "My First Experience as a Volunteer at WordCamp Bhopal 2025",
@@ -109,8 +99,7 @@ export const fallbackPosts = [
     published_at: "2025-02-28T00:00:00Z",
     excerpt:
       "Some experiences stay with you because of what you do. Others stay with you because of the people you meet along the way. Reflections on seeing WordCamp from the other side as a volunteer and contributor.",
-    image: `${BLOG_URL}/wordcamp-bhopal-2025-group-photo.jpg`,
+    image: "/icons/blog-fallback.svg",
     slug: "my-first-experience-as-a-volunteer-at-wordcamp-bhopal-2025",
-    externalUrl: `${BLOG_URL}/blog/my-first-experience-as-a-volunteer-at-wordcamp-bhopal-2025`,
   },
 ];

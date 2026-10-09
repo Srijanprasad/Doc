@@ -2,9 +2,9 @@ import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
 
-const service_id = import.meta.env.VITE_SERVICE_ID;
-const template_id = import.meta.env.VITE_TEMPLATE_ID;
-const public_key = import.meta.env.VITE_PUBLIC_KEY;
+const service_id = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+const template_id = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+const public_key = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
 const Email = () => {
   const [sending, setSending] = useState(false);

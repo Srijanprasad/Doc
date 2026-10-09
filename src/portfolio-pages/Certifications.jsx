@@ -1,0 +1,170 @@
+import { motion as Motion } from "framer-motion";
+import copadoBadge from "../assets/Copoado AI.avif";
+import salesforceBadge from "../assets/2025-04_Badge_SF-Certified_Plat-Dev_High-Res.png";
+import azureLogo from "../assets/Microsoft_Azure.svg.webp";
+
+const certifications = [
+  {
+    image: salesforceBadge.src,
+    title: "Salesforce Certified Platform Developer I",
+    issuer: "Salesforce",
+    description:
+      "Certified Salesforce Platform Developer I — validates expertise in designing, building, and deploying custom applications on the Salesforce platform using Apex, Lightning Web Components, SOQL, and declarative tools.",
+    tags: ["Salesforce", "Apex", "LWC", "SOQL", "Platform Development"],
+    link: "https://drive.google.com/file/d/1sDQbeCEIPEnRttjN6OI8KH1LVVTXhXja/view",
+  },
+  {
+    image: copadoBadge.src,
+    title: "Copado AI",
+    issuer: "Copado",
+    description:
+      "Certified in Copado AI — a DevOps platform for the Salesforce ecosystem. Covers platform fundamentals, AI-powered planning & development, quality & release operations, org intelligence, and prompt engineering for Salesforce lifecycle management.",
+    tags: ["Copado", "DevOps", "Salesforce", "AI"],
+    link: "https://drive.google.com/file/d/1FNFg0XXtHs39_TJq8gnbSx_t1KeoIH7g/view",
+  },
+  {
+    image:
+      "https://images.credly.com/images/0e284c3f-5164-4b21-8660-0d84737941bc/linkedin_thumb_image.png",
+    title: "AWS Certified Solutions Architect – Associate",
+    issuer: "Amazon Web Services Training and Certification",
+    description:
+      "Design secure, scalable, and fault-tolerant distributed systems on AWS. Validates expertise in architectural best practices, cost optimization, and operational excellence.",
+    tags: ["AWS", "Cloud Architecture", "Solutions Design"],
+    link: "https://www.credly.com/badges/afc3beed-0ee5-4e65-9552-07ee1e92cff6/public_url",
+  },
+  {
+    image:
+      "https://images.credly.com/images/1f77d707-1538-46fd-92e0-c49649da87dc/linkedin_thumb_blob",
+    title: "SAP Certified - SAP Generative AI Developer",
+    issuer: "SAP",
+    description:
+      "This certification verifies that you understand SAP's Business AI capabilities and have the skills to extend SAP BTP applications, while leveraging leading Large Language Models(LLMs), using SAP AI Core/SAP AI Launchpad and SAP's generative AI hub.",
+    tags: ["SAP", "Generative AI", "BTP", "LLM", "AI Core"],
+    link: "https://www.credly.com/badges/4f7d7398-6dc0-43b9-a3c8-5fe4219a5aa8/public_url",
+  },
+  {
+    image:
+      "https://images.credly.com/images/00634f82-b07f-4bbd-a6bb-53de397fc3a6/linkedin_thumb_image.png",
+    title: "AWS Cloud Practitioner (CLF-C02)",
+    issuer: "Amazon Web Services Training and Certification",
+    description:
+      "Foundational understanding of AWS cloud services, pricing, architecture best practices, security, and compliance. Validates overall cloud fluency.",
+    tags: ["AWS", "Cloud Computing", "Cloud Fundamentals"],
+    link: "https://www.datacamp.com/completed/statement-of-accomplishment/track/3b24e96f91727dba3a291bb20dd1b2060f20aae0",
+  },
+  {
+    image: azureLogo.src,
+    title: "Microsoft Azure Fundamentals (AZ-900)",
+    issuer: "Microsoft",
+    description:
+      "Foundational understanding of cloud services, Azure architecture, security, compliance, privacy, and pricing. Validates core cloud concepts and Azure service knowledge.",
+    tags: ["Azure", "Cloud Computing", "Cloud Fundamentals"],
+    link: "https://drive.google.com/file/d/1tkkfo9reR4E2F_CBcb4LyuBoEtv5rpHN/view",
+  },
+];
+
+function Certifications() {
+  return (
+    <>
+      <Motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        className="sleek-legacy-page sleek-certifications-page overflow-hidden"
+      >
+        <div className="sleek-certifications-inner">
+          <section className="sleek-legacy-heading">
+            <p className="sleek-eyebrow">Credentials</p>
+            <h1>Certifications</h1>
+            <p>Professional credentials and learning milestones across cloud, Salesforce, and applied AI.</p>
+          </section>
+
+          <section className="sleek-certifications-grid">
+            <div className="sleek-certification-list">
+              {certifications.map((cert, idx) => (
+                <a
+                  key={idx}
+                  href={cert.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <Motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    whileHover={{ y: -2 }}
+                    className="sleek-certification-card group"
+                  >
+                    <div className="sleek-certification-card-content">
+                      <div className="sleek-certification-badge">
+                        <div className="sleek-certification-badge-inner">
+                          <img
+                            src={cert.image}
+                            alt={cert.title}
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="sleek-certification-copy">
+                        <div>
+                          <div>
+                            <h2>{cert.title}</h2>
+                            <p className="sleek-card-meta">
+                              {cert.issuer}
+                            </p>
+                          </div>
+
+
+                        </div>
+
+                        <p className="sleek-card-description">
+                          {cert.description}
+                        </p>
+
+                        <div className="sleek-certification-footer">
+                          <div className="sleek-skill-row">
+                            {cert.tags.map((tag, i) => (
+                              <span
+                                key={i}
+                                className="sleek-skill"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+
+                          <span className="sleek-text-link">
+                            View Credential
+                            <svg
+                              className="w-3 h-3"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                              />
+                            </svg>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+
+                  </Motion.div>
+                </a>
+              ))}
+            </div>
+          </section>
+        </div>
+      </Motion.div>
+    </>
+  );
+}
+
+export default Certifications;

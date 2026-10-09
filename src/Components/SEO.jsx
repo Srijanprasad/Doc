@@ -13,7 +13,7 @@ function SEO({
   noIndex = false,
 }) {
   const siteUrl = (
-    import.meta.env.VITE_SITE_URL || window.location.origin
+    process.env.NEXT_PUBLIC_SITE_URL || window.location.origin
   ).replace(/\/$/, "");
   const canonicalUrl = `${siteUrl}${canonicalPath || window.location.pathname}`;
   const pageTitle = title ? `${title} | ${SITE_NAME}` : SITE_NAME;

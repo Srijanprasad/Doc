@@ -110,9 +110,6 @@ const techs = [
 function MarqueeRow({ reverse = false, speed = 50 }) {
   return (
     <div className="relative overflow-hidden">
-      <div className="pointer-events-none absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-[#0f0f0f] to-transparent z-20" />
-      <div className="pointer-events-none absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-[#0f0f0f] to-transparent z-20" />
-
       <div
         className={`animate-marquee ${
           reverse ? "reverse" : ""
@@ -122,9 +119,9 @@ function MarqueeRow({ reverse = false, speed = 50 }) {
         {[...techs, ...techs].map((tech, i) => (
           <div
             key={`${tech.label}-${i}`}
-            className="flex items-center gap-2 px-4 py-2 rounded-full border border-neutral-700 bg-[#1a1a1a] text-white text-sm whitespace-nowrap hover:bg-[#2c2c2c] transition-colors duration-300"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-white/10 bg-white/[0.04] text-slate-300 text-xs whitespace-nowrap hover:bg-white/[0.08] transition-colors duration-300"
           >
-            <span className="text-lg">{tech.icon}</span>
+            <span className="text-base">{tech.icon}</span>
             <span className="font-medium">{tech.label}</span>
           </div>
         ))}
