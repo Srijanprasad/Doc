@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import "./globals.css";
 import "../index.css";
 import { siteConfig } from "@/data/siteConfig";
 import { authorData } from "@/data/author";
 import { getAuthorJsonLd, getWebsiteJsonLd } from "@/lib/seo";
 import { LayoutClient } from "@/components/LayoutClient";
+import { AdSenseScript } from "@/components/AdSenseScript";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -67,7 +67,10 @@ export default function RootLayout({
   const authorSchema = getAuthorJsonLd();
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+    >
       <head>
         <script
           type="application/ld+json"
@@ -79,11 +82,7 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8795812344944723"
-          crossOrigin="anonymous"
-        />
+        <AdSenseScript />
         <LayoutClient>{children}</LayoutClient>
       </body>
     </html>

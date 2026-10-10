@@ -24,12 +24,14 @@ export function LayoutClient({ children }: { children: React.ReactNode }) {
   const isPublicationPage = publicationPrefixes.some(
     (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`),
   );
+  const isBlogSection = pathname === "/blog" || pathname.startsWith("/blog/");
+  const shouldShowRagAssistant = isPublicationPage && !isBlogSection;
 
   return (
     <>
       {isPublicationPage && <SkipLink />}
       <Header
-        onOpenRag={isPublicationPage ? () => setIsRagOpen(true) : undefined}
+        onOpenRag={shouldShowRagAssistant ? () => setIsRagOpen(true) : undefined}
       />
       <CursorPet />
       <div
@@ -40,7 +42,7 @@ export function LayoutClient({ children }: { children: React.ReactNode }) {
         {children}
       </div>
       {isPublicationPage && <Footer />}
-      {isPublicationPage && (
+      {shouldShowRagAssistant && (
         <RagAssistant isOpen={isRagOpen} onClose={() => setIsRagOpen(false)} />
       )}
     </>
