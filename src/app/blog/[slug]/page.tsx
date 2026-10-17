@@ -65,6 +65,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
         description: markdownPost.description,
         url,
         publishedTime: markdownPost.date,
+        modifiedTime: markdownPost.date,
         authors: [authorData.name],
         tags: markdownPost.tags,
         images: [{ url: markdownPost.image, alt: markdownPost.title }],
@@ -127,21 +128,47 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const markdownPost = article ? undefined : getMarkdownBlogPost(slug);
   if (markdownPost) {
     const articleUrl = `${siteConfig.url}/blog/${markdownPost.slug}`;
+    const imageUrl = markdownPost.image.startsWith("http")
+      ? markdownPost.image
+      : `${siteConfig.url}${markdownPost.image}`;
     const articleSchema = {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
+      "@id": `${articleUrl}#article`,
       headline: markdownPost.title,
       description: markdownPost.description,
       datePublished: markdownPost.date,
-      image: [`${siteConfig.url}${markdownPost.image}`],
+      dateModified: markdownPost.date,
+      image: [imageUrl],
       author: {
+        "@type": "Person",
+        "@id": `${siteConfig.url}/#author`,
+        name: authorData.name,
+        url: `${siteConfig.url}/author/${authorData.slug}`,
+      },
+      publisher: {
         "@type": "Person",
         name: authorData.name,
         url: `${siteConfig.url}/author/${authorData.slug}`,
       },
-      mainEntityOfPage: articleUrl,
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": articleUrl,
+      },
+      articleSection: "Java",
       keywords: markdownPost.tags.join(", "),
+      isPartOf: {
+        "@type": "Blog",
+        "@id": `${siteConfig.url}/blog#blog`,
+        name: `${siteConfig.shortName} Editorial Articles`,
+      },
     };
+    const breadcrumbSchema = getBreadcrumbJsonLd([
+      { name: "Home", url: siteConfig.url },
+      { name: "Articles", url: `${siteConfig.url}/blog` },
+      { name: "Java", url: `${siteConfig.url}/blog` },
+      { name: markdownPost.title, url: articleUrl },
+    ]);
 
     return (
       <>
@@ -149,6 +176,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(articleSchema).replace(/</g, "\\u003c"),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(breadcrumbSchema).replace(/</g, "\\u003c"),
           }}
         />
         <div className="container sleek-markdown-article-page">

@@ -11,7 +11,7 @@ import { ArrowUpRight } from "lucide-react";
 
 const title = "Blog";
 const description =
-  "Notes and articles by Srijan Prasad on software development, cloud, automation, and practical AI.";
+  "Notes and articles by Srijan Prasad on Java, software development, cloud, automation, and practical AI.";
 const image = "/srijan-prasad-avatar.png";
 
 export const metadata: Metadata = {
@@ -19,6 +19,9 @@ export const metadata: Metadata = {
   description,
   keywords: [
     "software engineering",
+    "Java",
+    "Spring Boot",
+    "virtual threads",
     "artificial intelligence",
     "generative engine optimization",
     "web performance",
