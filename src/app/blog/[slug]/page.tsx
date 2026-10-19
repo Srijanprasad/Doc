@@ -54,14 +54,15 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   const markdownPost = article ? undefined : getMarkdownBlogPost(slug);
   if (markdownPost) {
     const url = `${siteConfig.url}/blog/${markdownPost.slug}`;
+    const seoTitle = markdownPost.seoTitle ?? markdownPost.title;
     return {
-      title: markdownPost.title,
+      title: seoTitle,
       description: markdownPost.description,
       alternates: { canonical: url },
       authors: [{ name: authorData.name, url: `${siteConfig.url}/author/${authorData.slug}` }],
       openGraph: {
         type: "article",
-        title: markdownPost.title,
+        title: seoTitle,
         description: markdownPost.description,
         url,
         publishedTime: markdownPost.date,
@@ -72,7 +73,7 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
       },
       twitter: {
         card: "summary_large_image",
-        title: markdownPost.title,
+        title: seoTitle,
         description: markdownPost.description,
         images: [markdownPost.image],
         creator: authorData.handle,
@@ -128,6 +129,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const markdownPost = article ? undefined : getMarkdownBlogPost(slug);
   if (markdownPost) {
     const articleUrl = `${siteConfig.url}/blog/${markdownPost.slug}`;
+    const articleSection = markdownPost.category ?? "Software Development";
     const imageUrl = markdownPost.image.startsWith("http")
       ? markdownPost.image
       : `${siteConfig.url}${markdownPost.image}`;
@@ -155,7 +157,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         "@type": "WebPage",
         "@id": articleUrl,
       },
-      articleSection: "Java",
+      articleSection,
       keywords: markdownPost.tags.join(", "),
       isPartOf: {
         "@type": "Blog",
@@ -166,7 +168,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     const breadcrumbSchema = getBreadcrumbJsonLd([
       { name: "Home", url: siteConfig.url },
       { name: "Articles", url: `${siteConfig.url}/blog` },
-      { name: "Java", url: `${siteConfig.url}/blog` },
+      { name: articleSection, url: `${siteConfig.url}/blog` },
       { name: markdownPost.title, url: articleUrl },
     ]);
 

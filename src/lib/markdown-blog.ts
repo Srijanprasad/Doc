@@ -4,8 +4,10 @@ import matter from "gray-matter";
 
 export interface MarkdownBlogPost {
   title: string;
+  seoTitle?: string;
   slug: string;
   description: string;
+  category?: string;
   date: string;
   tags: string[];
   image: string;
@@ -61,8 +63,16 @@ function parsePost(fileName: string): MarkdownBlogPost {
 
   return {
     title: requiredString(metadata, "title", fileName),
+    seoTitle:
+      typeof metadata.seoTitle === "string" && metadata.seoTitle.trim()
+        ? metadata.seoTitle.trim()
+        : undefined,
     slug,
     description: requiredString(metadata, "description", fileName),
+    category:
+      typeof metadata.category === "string" && metadata.category.trim()
+        ? metadata.category.trim()
+        : undefined,
     date,
     tags,
     image,
