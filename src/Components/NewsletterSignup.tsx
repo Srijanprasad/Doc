@@ -5,17 +5,40 @@ import { Mail, CheckCircle2 } from "lucide-react";
 
 export function NewsletterSignup() {
   const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState("");
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [message, setMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!email || !email.includes("@")) {
-      setError("Please provide a valid email address.");
+    const normalizedEmail = email.trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)) {
+      setStatus("error");
+      setMessage("Please enter a valid email address.");
       return;
     }
-    setError("");
-    setSubmitted(true);
+
+    setStatus("submitting");
+    setMessage("");
+
+    try {
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: normalizedEmail }),
+      });
+      const result = (await response.json()) as { message?: string };
+
+      if (!response.ok) {
+        throw new Error(result.message || "We could not complete your subscription.");
+      }
+
+      setEmail("");
+      setStatus("success");
+      setMessage(result.message || "You are subscribed to the High-Signal Dispatch.");
+    } catch (error) {
+      setStatus("error");
+      setMessage(error instanceof Error ? error.message : "Subscription failed. Please try again.");
+    }
   };
 
   return (
@@ -30,10 +53,10 @@ export function NewsletterSignup() {
         A curated, monthly publication examining artificial intelligence, generative search optimization (GEO), personal knowledge systems, and software engineering. No spam. No fluff.
       </p>
 
-      {submitted ? (
-        <div style={{ display: "inline-flex", alignItems: "center", gap: "10px", padding: "14px 24px", backgroundColor: "rgba(5, 150, 105, 0.1)", color: "var(--accent-emerald)", borderRadius: "var(--radius-md)", fontWeight: 600 }}>
+      {status === "success" ? (
+        <div className="newsletter-status newsletter-status-success" role="status">
           <CheckCircle2 size={18} />
-          <span>Subscription confirmed. Thank you for following the publication.</span>
+          <span>{message}</span>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="newsletter-form" noValidate>
@@ -44,17 +67,19 @@ export function NewsletterSignup() {
             onChange={(e) => setEmail(e.target.value)}
             className="input-field"
             aria-label="Email address for dispatch subscription"
+            autoComplete="email"
+            disabled={status === "submitting"}
             required
           />
-          <button type="submit" className="btn btn-primary">
-            Subscribe
+          <button type="submit" className="btn btn-primary" disabled={status === "submitting"}>
+            {status === "submitting" ? "Subscribing..." : "Subscribe"}
           </button>
         </form>
       )}
 
-      {error && (
-        <p style={{ color: "#ef4444", fontSize: "0.85rem", marginTop: "8px" }} role="alert">
-          {error}
+      {status === "error" && (
+        <p className="newsletter-error" role="alert">
+          {message}
         </p>
       )}
 

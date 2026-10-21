@@ -34,7 +34,7 @@ export function AuthorBox() {
             className="social-link-pill"
             aria-label="Author profile on GitHub (@Srijanprasad)"
           >
-            <span>GitHub (@Srijanprasad)</span>
+            <span>GitHub</span>
             <ExternalLink size={12} />
           </a>
 
@@ -45,7 +45,7 @@ export function AuthorBox() {
             className="social-link-pill"
             aria-label="Author profile on X (@Ushan_0)"
           >
-            <span>X (@Ushan_0)</span>
+            <span>X</span>
             <ExternalLink size={12} />
           </a>
 
@@ -56,7 +56,7 @@ export function AuthorBox() {
             className="social-link-pill"
             aria-label="Author profile on Instagram (@srijanprasad_)"
           >
-            <span>Instagram (@srijanprasad_)</span>
+            <span>Instagram</span>
             <ExternalLink size={12} />
           </a>
 

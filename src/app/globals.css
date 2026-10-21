@@ -1072,14 +1072,18 @@ p code, li code {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 0;
-  border-top: 1px solid var(--border-light);
-  border-bottom: 1px solid var(--border-light);
-  margin: 40px 0;
+  gap: 20px;
+  padding: 18px 20px;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  margin: 30px 0 46px;
+  box-shadow: var(--shadow-sm);
 }
 
 .share-buttons {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 10px;
 }
@@ -1177,6 +1181,11 @@ p code, li code {
   box-shadow: var(--shadow-md);
 }
 
+.newsletter-card > svg,
+.newsletter-card > div:first-child {
+  margin-inline: auto;
+}
+
 .newsletter-title {
   font-family: var(--font-serif);
   font-size: 1.85rem;
@@ -1197,6 +1206,38 @@ p code, li code {
   gap: 10px;
   max-width: 480px;
   margin: 0 auto 12px auto;
+}
+
+.newsletter-form .btn {
+  flex: 0 0 auto;
+  min-width: 118px;
+}
+
+.newsletter-form .btn:disabled,
+.newsletter-form .input-field:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.newsletter-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 100%;
+  padding: 14px 20px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+}
+
+.newsletter-status-success {
+  background-color: rgba(5, 150, 105, 0.1);
+  color: var(--accent-emerald);
+}
+
+.newsletter-error {
+  margin: 8px 0 0 !important;
+  color: #ef4444 !important;
+  font-size: 0.85rem !important;
 }
 
 .input-field {
@@ -1288,6 +1329,10 @@ p code, li code {
   grid-template-columns: 2fr 1fr 1fr 1fr;
   gap: 40px;
   margin-bottom: 50px;
+}
+
+.footer-grid-compact {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .footer-col-title {

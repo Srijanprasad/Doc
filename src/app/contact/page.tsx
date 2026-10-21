@@ -90,7 +90,7 @@ export default function ContactPage() {
                   className="social-link-pill"
                   style={{ justifyContent: "space-between", backgroundColor: "var(--bg-surface)" }}
                 >
-                  <span>Instagram: @srijanprasad_</span>
+                  <span>Instagram</span>
                   <ExternalLink size={13} />
                 </a>
 

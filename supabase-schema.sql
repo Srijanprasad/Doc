@@ -1,5 +1,25 @@
 create extension if not exists pgcrypto;
 
+create table if not exists public.newsletter_subscribers (
+  id uuid primary key default gen_random_uuid(),
+  email text not null unique check (email = lower(email)),
+  subscribed_at timestamptz not null default now()
+);
+
+alter table public.newsletter_subscribers enable row level security;
+
+grant insert on table public.newsletter_subscribers to anon, authenticated;
+
+drop policy if exists "Anyone can subscribe to newsletter" on public.newsletter_subscribers;
+create policy "Anyone can subscribe to newsletter"
+  on public.newsletter_subscribers
+  for insert
+  to anon, authenticated
+  with check (
+    email = lower(email)
+    and email ~ '^[^@\s]+@[^@\s]+\.[^@\s]+$'
+  );
+
 create table if not exists public.posts (
   id uuid primary key default gen_random_uuid(),
   title text not null check (char_length(title) between 1 and 180),

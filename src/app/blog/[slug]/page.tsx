@@ -24,6 +24,27 @@ interface ArticlePageProps {
   params: Promise<{ slug: string }>;
 }
 
+function markdownHeadingId(text: string) {
+  return text
+    .toLowerCase()
+    .replace(/[`*_]/g, "")
+    .replace(/[^\w\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-");
+}
+
+function getMarkdownHeadings(content: string) {
+  return content
+    .split("\n")
+    .map((line) => line.match(/^## (.+)$/))
+    .filter((match): match is RegExpMatchArray => Boolean(match))
+    .map((match) => ({
+      id: markdownHeadingId(match[1]),
+      level: 2 as const,
+      text: match[1],
+    }));
+}
+
 export async function generateStaticParams() {
   const primarySlugs = articlesData.map((article) => ({
     slug: article.slug
@@ -133,6 +154,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     const imageUrl = markdownPost.image.startsWith("http")
       ? markdownPost.image
       : `${siteConfig.url}${markdownPost.image}`;
+    const markdownHeadings = getMarkdownHeadings(markdownPost.content);
+    const readingTimeMinutes = Math.max(
+      1,
+      Math.ceil(markdownPost.content.trim().split(/\s+/).length / 220),
+    );
     const articleSchema = {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
@@ -188,37 +214,73 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         />
         <div className="container sleek-markdown-article-page">
           <article className="sleek-markdown-article">
-            <Link href="/blog" className="sleek-inline-link">
-              <ChevronLeft aria-hidden="true" size={16} /> Back to the blog
-            </Link>
-            <div className="sleek-article-tags">
-              {markdownPost.tags.map((tag) => (
-                <span className="sleek-skill" key={tag}>{tag}</span>
-              ))}
-            </div>
-            <h1>{markdownPost.title}</h1>
-            <p className="sleek-article-description">{markdownPost.description}</p>
-            <div className="sleek-article-byline">
-              <img src={authorData.avatar} alt="" width="36" height="36" />
-              <span>{authorData.name}</span>
-              <span aria-hidden="true">·</span>
-              <time dateTime={markdownPost.date}>
-                {new Date(`${markdownPost.date}T00:00:00`).toLocaleDateString("en-US", {
-                  month: "long",
-                  day: "numeric",
-                  year: "numeric",
-                })}
-              </time>
-            </div>
-            <img
-              className="sleek-article-featured-image"
-              src={markdownPost.image}
-              alt={markdownPost.title}
-            />
-            <div className="sleek-markdown-content">
+            <header className="sleek-markdown-hero">
+              <div className="sleek-markdown-breadcrumbs" aria-label="Breadcrumb">
+                <Link href="/">Home</Link>
+                <span aria-hidden="true">/</span>
+                <Link href="/blog">Articles</Link>
+                <span aria-hidden="true">/</span>
+                <span>{articleSection}</span>
+              </div>
+              <Link href="/blog" className="sleek-inline-link">
+                <ChevronLeft aria-hidden="true" size={16} /> Back to the blog
+              </Link>
+              <div className="sleek-article-tags">
+                {markdownPost.tags.slice(0, 4).map((tag) => (
+                  <span className="sleek-skill" key={tag}>{tag}</span>
+                ))}
+              </div>
+              <h1>{markdownPost.title}</h1>
+              <p className="sleek-article-description">{markdownPost.description}</p>
+              <div className="sleek-article-byline">
+                <img src={authorData.avatar} alt="" width="42" height="42" />
+                <span className="sleek-byline-author">{authorData.name}</span>
+                <span aria-hidden="true">·</span>
+                <time dateTime={markdownPost.date}>
+                  {new Date(`${markdownPost.date}T00:00:00`).toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
+                </time>
+                <span aria-hidden="true">·</span>
+                <span>{readingTimeMinutes} min read</span>
+              </div>
+            </header>
+            <figure className="sleek-markdown-featured-media">
+              <img
+                className="sleek-article-featured-image"
+                src={markdownPost.image}
+                alt={markdownPost.title}
+                width={1600}
+                height={900}
+                fetchPriority="high"
+              />
+              <figcaption>Featured image for {markdownPost.title}</figcaption>
+            </figure>
+            <div className="sleek-markdown-reading-layout">
+              {markdownHeadings.length > 0 && (
+                <aside className="sleek-markdown-toc" aria-label="On this page">
+                  <p>On this page</p>
+                  <ol>
+                    {markdownHeadings.map((heading) => (
+                      <li key={heading.id}>
+                        <a href={`#${heading.id}`}>{heading.text}</a>
+                      </li>
+                    ))}
+                  </ol>
+                </aside>
+              )}
+              <div className="sleek-markdown-content">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 components={{
+                  h2: ({ children }) => {
+                    const text = Array.isArray(children)
+                      ? children.join("")
+                      : String(children);
+                    return <h2 id={markdownHeadingId(text)}>{children}</h2>;
+                  },
                   a: ({ href, children }) => {
                     const external = href?.startsWith("https://") || href?.startsWith("http://");
                     return (
@@ -238,8 +300,24 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               >
                 {markdownPost.content}
               </ReactMarkdown>
+              </div>
             </div>
+            <section className="sleek-markdown-endcap" aria-label="Article information">
+              <div>
+                <p className="sleek-eyebrow">Keep exploring</p>
+                <h2>More practical research from the publication</h2>
+                <p>
+                  Read more field notes on software engineering, Java, AI, and
+                  the systems behind the tools we use every day.
+                </p>
+                <Link href="/blog" className="sleek-text-link">
+                  Browse all articles <ChevronRight aria-hidden="true" size={15} />
+                </Link>
+              </div>
+            </section>
             <SocialShare url={articleUrl} title={markdownPost.title} />
+            <AuthorBox />
+            <NewsletterSignup />
           </article>
         </div>
       </>

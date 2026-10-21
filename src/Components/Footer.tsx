@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { siteConfig } from "@/data/siteConfig";
 import { authorData } from "@/data/author";
-import { ExternalLink, Rss, Bot, ShieldCheck } from "lucide-react";
+import { Rss, Bot, ShieldCheck } from "lucide-react";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -9,63 +8,7 @@ export function Footer() {
   return (
     <footer className="site-footer">
       <div className="container">
-        <div className="footer-grid">
-          {/* Column 1: Editorial Mission */}
-          <div>
-            <div className="brand-identity" style={{ marginBottom: "16px" }}>
-              <div className="brand-avatar" aria-hidden="true" style={{ width: "32px", height: "32px", fontSize: "0.85rem" }}>
-                SP
-              </div>
-              <span className="brand-title" style={{ fontSize: "1.15rem" }}>
-                {siteConfig.shortName}
-              </span>
-            </div>
-            <p style={{ fontSize: "0.9rem", color: "var(--text-secondary)", lineHeight: "1.6", maxWidth: "340px" }}>
-              A high-signal personal editorial publication and knowledge architecture platform. Focused on verifiable research, generative search optimization (GEO), and digital cognition.
-            </p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "16px" }}>
-              <a
-                href={authorData.socials.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link-pill"
-                aria-label="Author profile on GitHub (@Srijanprasad)"
-              >
-                <span>GitHub</span>
-                <ExternalLink size={12} />
-              </a>
-              <a
-                href={authorData.socials.x}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link-pill"
-                aria-label="Author profile on X (@Ushan_0)"
-              >
-                <span>X (@Ushan_0)</span>
-                <ExternalLink size={12} />
-              </a>
-              <a
-                href={authorData.socials.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link-pill"
-                aria-label="Author profile on Instagram (@srijanprasad_)"
-              >
-                <span>Instagram</span>
-                <ExternalLink size={12} />
-              </a>
-              <a
-                href={authorData.socials.email}
-                className="social-link-pill"
-                aria-label="Send email to srijanprasad2006@gmail.com"
-              >
-                <span>Email</span>
-                <ExternalLink size={12} />
-              </a>
-            </div>
-          </div>
-
-          {/* Column 2: Content Discovery */}
+        <div className="footer-grid footer-grid-compact">
           <div>
             <h4 className="footer-col-title">Publication</h4>
             <ul className="footer-links">
@@ -125,7 +68,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="footer-link"
                 >
-                  GitHub (@Srijanprasad)
+                  GitHub
                 </a>
               </li>
               <li>
@@ -135,7 +78,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="footer-link"
                 >
-                  X (@Ushan_0)
+                  X
                 </a>
               </li>
               <li>
@@ -153,7 +96,7 @@ export function Footer() {
                   href={authorData.socials.email}
                   className="footer-link"
                 >
-                  Email ({authorData.email})
+                  Email
                 </a>
               </li>
             </ul>

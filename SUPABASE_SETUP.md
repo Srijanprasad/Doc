@@ -17,10 +17,15 @@ drafts and write operations. Never put a Supabase service-role key in a
 5. Copy the project URL and publishable (or legacy `anon`) key from Project
    Settings → API.
 
-## 2. Create the posts table
+## 2. Create the database tables
 
 Open the SQL editor, verify the owner email in
-[`supabase-schema.sql`](./supabase-schema.sql), then run the script. Public
+[`supabase-schema.sql`](./supabase-schema.sql), then run the complete script.
+It creates both the `newsletter_subscribers` table and the `posts` table. The
+newsletter form requires `newsletter_subscribers` to exist before subscriptions
+can be saved.
+
+Public roles can insert newsletter subscriptions but cannot read them. Public
 roles can read only published posts. Only the matching authenticated owner
 email can read drafts, insert, update, or delete.
 

@@ -7,7 +7,7 @@ import { siteConfig } from "@/data/siteConfig";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ArticleCard } from "@/components/ArticleCard";
 import { getAuthorJsonLd, getBreadcrumbJsonLd } from "@/lib/seo";
-import { ExternalLink, Edit3, ShieldCheck, BookOpen, Layers } from "lucide-react";
+import { ExternalLink, Edit3, BookOpen, Layers } from "lucide-react";
 
 interface AuthorPageProps {
   params: Promise<{ slug: string }>;
@@ -112,7 +112,6 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
                 <h1 id="author-title" style={{ fontSize: "clamp(2rem, 3.5vw, 2.7rem)", margin: 0, fontWeight: 700 }}>
                   {authorData.name}
                 </h1>
-                <span className="badge badge-accent">Verified Publication Entity</span>
               </div>
 
               <p style={{ fontSize: "1.05rem", fontWeight: 600, color: "var(--text-tertiary)", marginBottom: "16px" }}>
@@ -129,10 +128,6 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
                   marginBottom: "24px"
                 }}
               >
-                <div style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "0.75rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", color: "var(--accent-primary)", marginBottom: "6px" }}>
-                  <ShieldCheck size={13} style={{ color: "var(--accent-emerald)" }} />
-                  <span>Verified Author Profile &amp; Background</span>
-                </div>
                 <p style={{ margin: 0, fontSize: "0.98rem", color: "var(--text-secondary)", lineHeight: "1.7" }}>
                   {authorData.biography}
                 </p>
@@ -147,7 +142,7 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
                   className="social-link-pill"
                   aria-label="Author profile on GitHub (@Srijanprasad)"
                 >
-                  <span>GitHub: @Srijanprasad</span>
+                  <span>GitHub</span>
                   <ExternalLink size={13} />
                 </a>
 
@@ -158,7 +153,7 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
                   className="social-link-pill"
                   aria-label="Author profile on X (@Ushan_0)"
                 >
-                  <span>X: @Ushan_0</span>
+                  <span>X</span>
                   <ExternalLink size={13} />
                 </a>
 
@@ -169,7 +164,7 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
                   className="social-link-pill"
                   aria-label="Author profile on Instagram (@srijanprasad_)"
                 >
-                  <span>Instagram: @srijanprasad_</span>
+                  <span>Instagram</span>
                   <ExternalLink size={13} />
                 </a>
 
@@ -178,7 +173,7 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
                   className="social-link-pill"
                   aria-label="Email srijanprasad2006@gmail.com directly"
                 >
-                  <span>Email: {authorData.email}</span>
+                  <span>Email</span>
                   <ExternalLink size={13} />
                 </a>
 
