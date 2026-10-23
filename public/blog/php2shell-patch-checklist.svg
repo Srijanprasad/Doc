@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">PHP2Shell patch checklist</title>
+  <desc id="desc">A five-step checklist for patching PHP2Shell: identify, patch, restart, verify, and review logs.</desc>
+  <rect width="1600" height="900" rx="40" fill="#f8fafc"/>
+  <rect width="1600" height="230" rx="40" fill="#172554"/>
+  <text x="110" y="110" fill="#bfdbfe" font-family="Arial, sans-serif" font-size="32" font-weight="700" letter-spacing="4">INCIDENT RESPONSE CHECKLIST</text>
+  <text x="110" y="180" fill="#fff" font-family="Arial, sans-serif" font-size="62" font-weight="700">Patch PHP2Shell</text>
+  <g font-family="Arial, sans-serif">
+    <g transform="translate(130 330)">
+      <circle cx="48" cy="48" r="48" fill="#2563eb"/><text x="48" y="63" text-anchor="middle" fill="#fff" font-size="42" font-weight="700">1</text>
+      <text x="130" y="38" fill="#0f172a" font-size="34" font-weight="700">Identify</text><text x="130" y="82" fill="#475569" font-size="24">Check every PHP runtime</text>
+    </g>
+    <g transform="translate(850 330)">
+      <circle cx="48" cy="48" r="48" fill="#0891b2"/><text x="48" y="63" text-anchor="middle" fill="#fff" font-size="42" font-weight="700">2</text>
+      <text x="130" y="38" fill="#0f172a" font-size="34" font-weight="700">Patch</text><text x="130" y="82" fill="#475569" font-size="24">Install the vendor fix</text>
+    </g>
+    <g transform="translate(130 520)">
+      <circle cx="48" cy="48" r="48" fill="#0d9488"/><text x="48" y="63" text-anchor="middle" fill="#fff" font-size="42" font-weight="700">3</text>
+      <text x="130" y="38" fill="#0f172a" font-size="34" font-weight="700">Restart</text><text x="130" y="82" fill="#475569" font-size="24">Reload workers and containers</text>
+    </g>
+    <g transform="translate(850 520)">
+      <circle cx="48" cy="48" r="48" fill="#7c3aed"/><text x="48" y="63" text-anchor="middle" fill="#fff" font-size="42" font-weight="700">4</text>
+      <text x="130" y="38" fill="#0f172a" font-size="34" font-weight="700">Verify</text><text x="130" y="82" fill="#475569" font-size="24">Confirm versions and health</text>
+    </g>
+  </g>
+  <rect x="360" y="745" width="880" height="76" rx="18" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <text x="800" y="795" text-anchor="middle" fill="#166534" font-family="Arial, sans-serif" font-size="28" font-weight="700">5 · Review logs from 17 October onward</text>
+</svg>
